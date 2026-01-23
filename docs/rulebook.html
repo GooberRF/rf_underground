@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Faction: Underground - Rulebook</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0d0f12;
+      --surface: #171a1f;
+      --text: #e6e8ee;
+      --muted: #a5adba;
+      --accent: #f24d3d;
+      --border: #2b313b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 32px 20px 20px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #12151b, #1b212b);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 880px;
+    }
+
+    nav {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      background: var(--surface);
+    }
+
+    main {
+      padding: 24px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    section h2 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+    }
+
+    section h3 {
+      margin: 18px 0 8px;
+      font-size: 1.1rem;
+    }
+
+    section p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+
+    section ul,
+    section ol {
+      margin: 0 0 14px 20px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    section li {
+      margin-bottom: 6px;
+    }
+
+    .toc ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .toc a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f1217;
+    }
+
+    .toc a span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .callout {
+      background: #0f1217;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    footer {
+      padding: 24px 20px 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rulebook</h1>
+    <p>Complete rules for Red Faction: Underground. Use the quick links below or scroll section by section.</p>
+    <nav>
+      <a href="index.html">Back to Card Gallery</a>
+      <a href="#how-you-win">How You Win</a>
+      <a href="#components">Components</a>
+      <a href="#card-types">Card Types</a>
+      <a href="#setup">Setup</a>
+      <a href="#hand-size">Hand Size</a>
+      <a href="#turn-structure">Turn Structure</a>
+      <a href="#tracking">Points &amp; Wounds</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#how-you-win">1. How You Win <span>Win conditions and elimination</span></a></li>
+        <li><a href="#components">2. Components <span>Decks and play areas</span></a></li>
+        <li><a href="#card-types">3. Card Types <span>Rooms, characters, and more</span></a></li>
+        <li><a href="#setup">4. Setup <span>Preparing the play area</span></a></li>
+        <li><a href="#hand-size">5. Hand Size <span>Card limits by player count</span></a></li>
+        <li><a href="#turn-structure">6. Turn Structure <span>Phase-by-phase flow</span></a></li>
+        <li><a href="#tracking">7. Tracking Points and Wounds <span>Scoring and elimination</span></a></li>
+      </ul>
+    </section>
+
+    <section id="how-you-win">
+      <h2>1. How You Win</h2>
+      <div class="callout">You win immediately when either win condition is met.</div>
+      <ol>
+        <li><strong>Score 10 Points</strong> by defeating attacking characters.</li>
+        <li><strong>Be the Last Surviving Player</strong>
+          <ul>
+            <li>A player is eliminated when they reach <strong>3 Wounds</strong>.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section id="components">
+      <h2>2. Components</h2>
+      <h3>Main Deck (Shared)</h3>
+      <p>Contains:</p>
+      <ul>
+        <li><strong>Characters</strong></li>
+        <li><strong>Events</strong></li>
+        <li><strong>Interrupts</strong></li>
+        <li><strong>Nano Enhancements</strong></li>
+      </ul>
+      <p><strong>Main Discard Pile:</strong> When the Main Deck runs out, shuffle the Main Discard Pile to form a new Main Deck.</p>
+
+      <h3>Room Deck (Shared)</h3>
+      <p>Contains:</p>
+      <ul>
+        <li><strong>Rooms</strong></li>
+      </ul>
+      <p><strong>Room Discard Pile:</strong> When the Room Deck runs out, shuffle the Room Discard Pile to form a new Room Deck.</p>
+
+      <h3>Areas</h3>
+      <ul>
+        <li><strong>Each player’s Base</strong> (starts empty; max <strong>5</strong> rooms)</li>
+        <li><strong>Barracks</strong> (central area where characters wait before attacking)</li>
+        <li><strong>Each player’s Hand</strong> (secret information)</li>
+      </ul>
+    </section>
+
+    <section id="card-types">
+      <h2>3. Card Types</h2>
+
+      <h3>Rooms</h3>
+      <p>Rooms appear in the <strong>Room Deck</strong> and in players’ <strong>Bases</strong>.</p>
+      <p>Each Room has:</p>
+      <ul>
+        <li><strong>Name</strong></li>
+        <li><strong>Alignment:</strong> RF, Ultor, EDF, RC, or Neutral</li>
+        <li><strong>Room Stat + Check Number:</strong> STR, DEX, or INT with a required value</li>
+        <li><strong>Type:</strong> Underground / Surface / Sky</li>
+        <li><strong>Rule/Effect</strong> (always follow the card text)</li>
+      </ul>
+      <p><strong>Entrance:</strong> The first room of your base (the one attackers enter first).</p>
+
+      <h3>Characters</h3>
+      <p>Characters appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, the <strong>Barracks</strong>, and as <strong>Attackers</strong>.</p>
+      <p>Each Character has:</p>
+      <ul>
+        <li><strong>Name</strong></li>
+        <li><strong>Types:</strong> Soldier, Support, Creature, Leader (any number)</li>
+        <li><strong>Attacks:</strong> What it attacks</li>
+        <li><strong>Stats:</strong> STR, DEX, INT, CON</li>
+      </ul>
+      <p>Characters can only be played during the <strong>Play</strong> phase.</p>
+
+      <h3>Events</h3>
+      <p>Events appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, and the <strong>Stack</strong> (while resolving).</p>
+      <p>Each Event has:</p>
+      <ul>
+        <li><strong>Name</strong></li>
+        <li><strong>Rule/Effect</strong></li>
+      </ul>
+      <p><strong>Cost to play an Event:</strong> Discard 1 card from your hand.</p>
+      <p>Events can only be played during the <strong>Play</strong> phase.</p>
+
+      <h3>Interrupts</h3>
+      <p>Interrupts appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, and the <strong>Stack</strong> (while resolving).</p>
+      <p>Each Interrupt has:</p>
+      <ul>
+        <li><strong>Name</strong></li>
+        <li><strong>Play Condition</strong></li>
+        <li><strong>Rule/Effect</strong></li>
+      </ul>
+      <p><strong>Cost to play an Interrupt:</strong> Discard 1 card from your hand.</p>
+      <p>Interrupts can be played at the specific time printed on the card.</p>
+
+      <h3>Nano Enhancements</h3>
+      <p>Nano Enhancements appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, and <strong>attached</strong> to characters.</p>
+      <p>Each Nano Enhancement has:</p>
+      <ul>
+        <li><strong>Name</strong></li>
+        <li><strong>Rule/Effect</strong></li>
+      </ul>
+      <p><strong>Cost to play a Nano Enhancement:</strong> Discard 1 card from your hand.</p>
+    </section>
+
+    <section id="setup">
+      <h2>4. Setup</h2>
+      <ol>
+        <li>Place the <strong>Main Deck</strong> and <strong>Room Deck</strong> in the center of the play area, within reach of all players.</li>
+        <li>Note a central <strong>Barracks</strong> area.</li>
+        <li>Each player notes a <strong>Base area</strong> in front of them (begins with <strong>0 rooms</strong>).</li>
+        <li>Choose a starting player at random.</li>
+        <li>Each player draws up to their <strong>Hand Size</strong> (see <a href="#hand-size">Hand Size</a>).</li>
+        <li>The first player takes their turn.</li>
+      </ol>
+    </section>
+
+    <section id="hand-size">
+      <h2>5. Hand Size</h2>
+      <p>Your <strong>Hand Size</strong> is:</p>
+      <div class="callout"><strong>4 + number of other players</strong></div>
+      <ul>
+        <li><strong>2 players:</strong> 5 cards</li>
+        <li><strong>3 players:</strong> 6 cards</li>
+        <li><strong>4 players:</strong> 7 cards</li>
+      </ul>
+    </section>
+
+    <section id="turn-structure">
+      <h2>6. Turn Structure</h2>
+      <p>Each round has <strong>five phases</strong>, completed in this order:</p>
+      <ol>
+        <li><strong>Draw Phase</strong></li>
+        <li><strong>Play Phase</strong></li>
+        <li><strong>Build Phase</strong></li>
+        <li><strong>Target Phase</strong></li>
+        <li><strong>Combat Phase</strong></li>
+      </ol>
+      <p>Then the next round begins.</p>
+
+      <h3 id="draw-phase">6.1 Draw Phase</h3>
+      <p>Each player draws from the <strong>Main Deck</strong> until they reach their <strong>Max Hand Size</strong>.</p>
+
+      <h3 id="play-phase">6.2 Play Phase</h3>
+      <p>Starting with the player with the most points, each player takes their <strong>Play Phase</strong>. If multiple players are tied for the most points, randomly select the starting player from among the players tied for the most points.</p>
+      <p>During each player's Play Phase, that player may:</p>
+      <ol>
+        <li><strong>Play up to 1 Character</strong> from hand into the <strong>Barracks</strong>
+          <ul>
+            <li>Place it at the end of the barracks line (newest goes last).</li>
+          </ul>
+        </li>
+        <li><strong>Play any number of Events and/or Nano Enhancements</strong>
+          <ul>
+            <li>Each costs <strong>discard 1 card</strong>.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>After each player has completed their Play Phase, proceed to the Build Phase.</p>
+
+      <h3 id="build-phase">6.3 Build Phase</h3>
+      <p>Starting with the player with the most points, each player takes their <strong>Build Phase</strong>. If multiple players are tied for the most points, randomly select the starting player from among the players tied for the most points.</p>
+      <p>During each player's Build Phase, they:</p>
+      <ol>
+        <li>Look at the <strong>top 3 cards</strong> of the <strong>Room Deck</strong>.</li>
+        <li>If your base has <strong>fewer than 5 rooms</strong>:
+          <ul>
+            <li>Choose <strong>1</strong> and add it to your <strong>Entrance</strong> (front of your base).</li>
+          </ul>
+        </li>
+        <li>If your base already has <strong>5 rooms</strong>:
+          <ul>
+            <li>You <strong>may</strong> choose <strong>1</strong> and <strong>replace</strong> any single room in your base with it.</li>
+            <li>The replaced room is <strong>destroyed</strong> and goes to the <strong>Room Discard Pile</strong>.</li>
+          </ul>
+        </li>
+        <li>Put the other room cards you looked at into the <strong>Room Discard Pile</strong>.</li>
+      </ol>
+      <p>After each player has completed their Build Phase, proceed to the Target Phase.</p>
+
+      <h3 id="target-phase">6.4 Target Phase</h3>
+      <p>Determine attacks in the <strong>order that characters entered the barracks</strong> (oldest first).</p>
+      <p>For each character, select their target based on:</p>
+      <ul>
+        <li><strong>Non-Neutral characters</strong> target the base with the <strong>highest number of matching Attack Alignment symbols</strong>.</li>
+        <li><strong>Neutral characters</strong> target a base using their <strong>special targeting rule</strong>.</li>
+      </ul>
+      <h4>Tie Rule</h4>
+      <p>If <strong>more than one</strong> base is tied for best target, that character <strong>does not attack</strong> and <strong>stays in the barracks</strong>, keeping its position, then move on to the next character and pick their target.</p>
+      <p>Characters that select a target become <strong>Attackers</strong>.</p>
+
+      <h3 id="combat-phase">6.5 Combat Phase</h3>
+      <p>Combat resolves in two layers of order:</p>
+      <ol>
+        <li><strong>In turn order</strong> (player with the most points resolves first, then clockwise), then</li>
+        <li>For each base, resolve attackers in <strong>attacking order</strong> (the order in which they selected that base as their target).</li>
+      </ol>
+      <h4>Resolving an Attack</h4>
+      <ol>
+        <li>The attacker enters at the <strong>Entrance</strong> and moves <strong>room by room</strong>.</li>
+        <li>In each room, compare the room’s stat/check (STR/DEX/INT) to the attacker’s matching stat:
+          <ul>
+            <li>If <strong>attacker stat exceeds or equals the room check</strong> ? pass safely.</li>
+            <li>If <strong>attacker stat is less than room check</strong> ? take <strong>1 damage</strong>.</li>
+          </ul>
+        </li>
+        <li>If total damage <strong>exceeds or equals CON</strong>, the attacker <strong>dies immediately</strong>:
+          <ul>
+            <li>The defending player takes that character card as <strong>1 Point</strong> (keep it face down).</li>
+          </ul>
+        </li>
+        <li>If the attacker survives and passes through <strong>all rooms in the base</strong>:
+          <ul>
+            <li>The defending player takes that character card as <strong>1 Wound</strong> (keep it face up).</li>
+          </ul>
+        </li>
+      </ol>
+      <p>After combat in each base resolved, the next round begins at <strong>Draw Phase</strong>.</p>
+    </section>
+
+    <section id="tracking">
+      <h2>7. Tracking Points and Wounds</h2>
+      <h3>Points</h3>
+      <ul>
+        <li><strong>When a character dies in your base, you gain 1 Point.</strong> Keep those character cards face down.</li>
+      </ul>
+
+      <h3>Wounds</h3>
+      <ul>
+        <li><strong>When a character survives your entire base, you take 1 Wound.</strong> Keep those character cards face up.</li>
+        <li>At <strong>3 Wounds</strong>, you are immediately eliminated.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    This is a fan game set in the Red Faction universe.
+  </footer>
+</body>
+</html>
