@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Faction: Underground - Card Gallery</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0d0f12;
+      --surface: #171a1f;
+      --text: #e6e8ee;
+      --muted: #a5adba;
+      --accent: #f24d3d;
+      --border: #2b313b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 32px 20px 20px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #12151b, #1b212b);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 880px;
+    }
+
+    nav {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      background: var(--surface);
+    }
+
+    main {
+      padding: 24px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    section h2 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+    }
+
+    section p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .card-tile {
+      background: #0f1217;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .card-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .card-tile img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      background: #11151c;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+    }
+
+    .card-tile span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    footer {
+      padding: 24px 20px 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Card Gallery</h1>
+    <p>Browse Red Faction: Underground cards by deck and type. Click any thumbnail to view the full-size card art.</p>
+    <nav>
+      <a href="#characters">Characters</a>
+      <a href="#events">Events</a>
+      <a href="#interrupts">Interrupts</a>
+      <a href="#nano">Nano Enhancements</a>
+      <a href="#rooms">Rooms</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="characters">
+      <h2>Main Deck — Characters</h2>
+      <p>Playable characters that enter the barracks and attack bases.</p>
+      <div class="card-grid" data-card-type="C"></div>
+    </section>
+
+    <section id="events">
+      <h2>Main Deck — Events</h2>
+      <p>One-shot events that resolve immediately when played.</p>
+      <div class="card-grid" data-card-type="E"></div>
+    </section>
+
+    <section id="interrupts">
+      <h2>Main Deck — Interrupts</h2>
+      <p>Reactive cards that can be played at specific times.</p>
+      <div class="card-grid" data-card-type="A"></div>
+    </section>
+
+    <section id="nano">
+      <h2>Main Deck — Nano Enhancements</h2>
+      <p>Upgrades that attach to characters and enhance abilities.</p>
+      <div class="card-grid" data-card-type="N"></div>
+    </section>
+
+    <section id="rooms">
+      <h2>Room Deck — Rooms</h2>
+      <p>Rooms used to build bases.</p>
+      <div class="card-grid" data-card-type="R"></div>
+    </section>
+  </main>
+
+  <footer>
+    This is a fan game set in the Red Faction universe.
+  </footer>
+
+  <script>
+    const mainDeck = ["A01_AFireOnMars.png", "A02_BetterRedThanDead.png", "A03_CatchandRelease.png", "A04_DestroytheTerraformer.png", "A05_EmergencyResponse.png", "A06_EmergencyTunnelCollapse.png", "A07_GotaBerserkMinerHere.png", "A08_GuerrillasattheGates.png", "A09_HorseplayMeansDeath.png", "A10_IfOnlyYoudBeenFaster.png", "A11_InSopotsDeadlyEmbrace.png", "A12_KnockKnock.png", "A13_NothingtoSeeHere.png", "A14_RecognizeAnyOldFriends.png", "A15_ReversalofFortune.png", "A16_TheySetThisWholeThingUp.png", "A17_RockCrusher.png", "A18_UltorEcho.png", "A19_Waterlogged.png", "C01_AdamHale.png", "C02_AlecMason.png", "C03_AliasBurke.png", "C04_AlienQueen.png", "C05_AngusBrute.png", "C06_BabyReeper.png", "C07_Behemoth.png", "C08_Beluga.png", "C09_Berserker.png", "C10_BertramRoth.png", "C11_Capek.png", "C12_CarmenAvila.png", "C13_ColMasako.png", "C14_CrateMolov.png", "C15_Creeper.png", "C16_Cremant.png", "C17_DanMason.png", "C18_DariusMason.png", "C19_Echo.png", "C20_Eos.png", "C21_FrankWinters.png", "C22_HalvarGunnarsen.png", "C23_Hendrix.png", "C24_HugoDavies.png", "C25_JakeMason.png", "C26_JonathanKepler.png", "C27_JosephBroga.png", "C28_Kara.png", "C29_KavaXarel.png", "C30_LarsRepta.png", "C31_LuciusKobel.png", "C32_Mallus.png", "C33_MandrilShrike.png", "C34_Orion.png", "C35_Parker.png", "C36_RandyJenkins.png", "C37_Ravager.png", "C38_RayMason.png", "C39_Reeper.png", "C40_RichardGryphon.png", "C41_RockSnake.png", "C42_Samanya.png", "C43_Sekt.png", "C44_SophieQuill.png", "C45_Stoller.png", "C46_Tangier.png", "C47_UltorCombot.png", "C48_Vasha.png", "C49_VictorSopot.png", "C50_Wraith.png", "E01_DemonsoftheBadlands.png", "E02_DiscovertheNanoForge.png", "E03_HalesGambit.png", "E04_NaniteInfusion.png", "E05_SomethingisHungry.png", "E06_TheMASTersExpedition.png", "E07_TheRoadLessTravelled.png", "E08_TheTrueMastersofMars.png", "E09_TheVoiceofMars.png", "E10_ThermobaricExplosion.png", "E11_WarningShot.png", "E12_WelcometoMars.png", "E13_WhatLurksBelow.png", "N01_Adaptation.png", "N02_Barrage.png", "N03_Berserk.png", "N04_Breach.png", "N05_Driller.png", "N06_Fleetfoot.png", "N07_Fortitude.png", "N08_Glide.png", "N09_Guerrilla.png", "N10_Juggernaut.png", "N11_Martyrdom.png", "N12_MonkeySuit.png", "N13_PhaseShift.png", "N14_Rhino.png", "N15_Shockwave.png", "N16_Suppress.png", "N17_Topple.png", "N18_Tunneler.png"];
+    const roomDeck = ["R01_AbandonedMine.png", "R02_AlienQueensLair.png", "R03_AmRuKuoRefinery.png", "R04_Asimov.png", "R05_Bastion.png", "R06_BradburyCanyon.png", "R07_CapeksInnerSanctum.png", "R08_CapeksMedicalLabs.png", "R09_Cathedral.png", "R10_CommunicationTower.png", "R11_CorporateHQ.png", "R12_Diggstown.png", "R13_DockingBay.png", "R14_DustMiningComplex.png", "R15_FreeFireZone.png", "R16_GeothermalPowerPlant.png", "R17_GrandCanyon.png", "R18_Greenbelt.png", "R19_HarringtonMemorialBridge.png", "R20_HendrixHall.png", "R21_HighRentDistrict.png", "R22_IceMines.png", "R23_IrradiatedZone.png", "R24_KnANOBase.png", "R25_MarauderPrisonCamp.png", "R26_MarauderTemple.png", "R27_MarinerValley.png", "R28_MercenaryBase.png", "R29_MineM-4.png", "R30_MinerOlympicsArena.png", "R31_MountVogel.png", "R32_OasisIndustrialPark.png", "R33_OreProcessingPlant.png", "R34_PublicInformationBuilding.png", "R35_RedFactionBase.png", "R36_RedRockTradingPost.png", "R37_SectorN-17.png", "R38_SopotCityDocks.png", "R39_SopotsCitadel.png", "R40_SopotStatue.png", "R41_Spaceport.png", "R42_SpaceStation.png", "R43_StorageDepotB-76.png", "R44_TheMohole.png", "R45_TheTerraformer.png", "R46_TrainStation.png", "R47_UltorCentralCommand.png", "R48_Vetro.png"];
+
+    const typeMap = {
+      C: { label: 'Character', path: 'CardImages/MainDeck/' },
+      E: { label: 'Event', path: 'CardImages/MainDeck/' },
+      A: { label: 'Interrupt', path: 'CardImages/MainDeck/' },
+      N: { label: 'Nano Enhancement', path: 'CardImages/MainDeck/' },
+      R: { label: 'Room', path: 'CardImages/RoomDeck/' },
+    };
+
+    function formatTitle(filename) {
+      const base = filename.replace(/\.[^/.]+$/, '').split('_').slice(1).join(' ');
+      return base
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function createCardTile(filename, typeKey) {
+      const { label, path } = typeMap[typeKey];
+      const href = `${path}${filename}`;
+      const title = formatTitle(filename);
+      const tile = document.createElement('a');
+      tile.className = 'card-tile';
+      tile.href = href;
+      tile.target = '_blank';
+      tile.rel = 'noopener noreferrer';
+
+      const img = document.createElement('img');
+      img.src = href;
+      img.alt = `${title} (${label})`;
+      img.loading = 'lazy';
+
+      const caption = document.createElement('span');
+      caption.textContent = title;
+
+      tile.appendChild(img);
+      tile.appendChild(caption);
+
+      return tile;
+    }
+
+    function renderSection(typeKey, files) {
+      const grid = document.querySelector(`[data-card-type="${typeKey}"]`);
+      if (!grid) return;
+
+      files.forEach((filename) => {
+        grid.appendChild(createCardTile(filename, typeKey));
+      });
+    }
+
+    renderSection('C', mainDeck.filter((file) => file.startsWith('C')));
+    renderSection('E', mainDeck.filter((file) => file.startsWith('E')));
+    renderSection('A', mainDeck.filter((file) => file.startsWith('A')));
+    renderSection('N', mainDeck.filter((file) => file.startsWith('N')));
+    renderSection('R', roomDeck);
+  </script>
+</body>
+</html>
