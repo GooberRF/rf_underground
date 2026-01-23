@@ -106,6 +106,11 @@
       border-color: var(--accent);
     }
 
+    .card-tile:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     .card-tile img {
       width: 100%;
       height: auto;
@@ -121,6 +126,84 @@
       word-break: break-word;
     }
 
+    .zoom-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 12, 0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .zoom-overlay.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .zoom-dialog {
+      background: #0f1217;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      max-width: min(860px, 92vw);
+      max-height: 92vh;
+      width: 100%;
+      display: grid;
+      gap: 12px;
+      transform: scale(0.96);
+      transition: transform 0.2s ease;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .zoom-overlay.is-active .zoom-dialog {
+      transform: scale(1);
+    }
+
+    .zoom-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .zoom-title {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .zoom-close {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .zoom-close:hover {
+      border-color: var(--accent);
+    }
+
+    .zoom-image {
+      width: 100%;
+      height: auto;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #11151c;
+    }
+
+    body.is-zoomed {
+      overflow: hidden;
+    }
+
     footer {
       padding: 24px 20px 40px;
       color: var(--muted);
@@ -132,7 +215,7 @@
 <body>
   <header>
     <h1>Card Gallery</h1>
-    <p>Browse Red Faction: Underground cards by deck and type. Click any thumbnail to view the full-size card art.</p>
+    <p>Browse Red Faction: Underground cards by deck and type. Click any thumbnail to smoothly zoom the card art without leaving the page.</p>
     <nav>
       <a href="rulebook.html">Rulebook</a>
       <a href="#characters">Characters</a>
@@ -179,6 +262,16 @@
     This is a fan game set in the Red Faction universe.
   </footer>
 
+  <div class="zoom-overlay" aria-hidden="true">
+    <div class="zoom-dialog" role="dialog" aria-modal="true" aria-label="Card image zoom">
+      <div class="zoom-header">
+        <h3 class="zoom-title">Card Preview</h3>
+        <!---<button class="zoom-close" type="button">Exit zoom</button>--->
+      </div>
+      <img class="zoom-image" alt="" />
+    </div>
+  </div>
+
   <script>
     const mainDeck = ["A01_AFireOnMars.png", "A02_BetterRedThanDead.png", "A03_CatchandRelease.png", "A04_DestroytheTerraformer.png", "A05_EmergencyResponse.png", "A06_EmergencyTunnelCollapse.png", "A07_GotaBerserkMinerHere.png", "A08_GuerrillasattheGates.png", "A09_HorseplayMeansDeath.png", "A10_IfOnlyYoudBeenFaster.png", "A11_InSopotsDeadlyEmbrace.png", "A12_KnockKnock.png", "A13_NothingtoSeeHere.png", "A14_RecognizeAnyOldFriends.png", "A15_ReversalofFortune.png", "A16_TheySetThisWholeThingUp.png", "A17_RockCrusher.png", "A18_UltorEcho.png", "A19_Waterlogged.png", "C01_AdamHale.png", "C02_AlecMason.png", "C03_AliasBurke.png", "C04_AlienQueen.png", "C05_AngusBrute.png", "C06_BabyReeper.png", "C07_Behemoth.png", "C08_Beluga.png", "C09_Berserker.png", "C10_BertramRoth.png", "C11_Capek.png", "C12_CarmenAvila.png", "C13_ColMasako.png", "C14_CrateMolov.png", "C15_Creeper.png", "C16_Cremant.png", "C17_DanMason.png", "C18_DariusMason.png", "C19_Echo.png", "C20_Eos.png", "C21_FrankWinters.png", "C22_HalvarGunnarsen.png", "C23_Hendrix.png", "C24_HugoDavies.png", "C25_JakeMason.png", "C26_JonathanKepler.png", "C27_JosephBroga.png", "C28_Kara.png", "C29_KavaXarel.png", "C30_LarsRepta.png", "C31_LuciusKobel.png", "C32_Mallus.png", "C33_MandrilShrike.png", "C34_Orion.png", "C35_Parker.png", "C36_RandyJenkins.png", "C37_Ravager.png", "C38_RayMason.png", "C39_Reeper.png", "C40_RichardGryphon.png", "C41_RockSnake.png", "C42_Samanya.png", "C43_Sekt.png", "C44_SophieQuill.png", "C45_Stoller.png", "C46_Tangier.png", "C47_UltorCombot.png", "C48_Vasha.png", "C49_VictorSopot.png", "C50_Wraith.png", "E01_DemonsoftheBadlands.png", "E02_DiscovertheNanoForge.png", "E03_HalesGambit.png", "E04_NaniteInfusion.png", "E05_SomethingisHungry.png", "E06_TheMASTersExpedition.png", "E07_TheRoadLessTravelled.png", "E08_TheTrueMastersofMars.png", "E09_TheVoiceofMars.png", "E10_ThermobaricExplosion.png", "E11_WarningShot.png", "E12_WelcometoMars.png", "E13_WhatLurksBelow.png", "N01_Adaptation.png", "N02_Barrage.png", "N03_Berserk.png", "N04_Breach.png", "N05_Driller.png", "N06_Fleetfoot.png", "N07_Fortitude.png", "N08_Glide.png", "N09_Guerrilla.png", "N10_Juggernaut.png", "N11_Martyrdom.png", "N12_MonkeySuit.png", "N13_PhaseShift.png", "N14_Rhino.png", "N15_Shockwave.png", "N16_Suppress.png", "N17_Topple.png", "N18_Tunneler.png"];
     const roomDeck = ["R01_AbandonedMine.png", "R02_AlienQueensLair.png", "R03_AmRuKuoRefinery.png", "R04_Asimov.png", "R05_Bastion.png", "R06_BradburyCanyon.png", "R07_CapeksInnerSanctum.png", "R08_CapeksMedicalLabs.png", "R09_Cathedral.png", "R10_CommunicationTower.png", "R11_CorporateHQ.png", "R12_Diggstown.png", "R13_DockingBay.png", "R14_DustMiningComplex.png", "R15_FreeFireZone.png", "R16_GeothermalPowerPlant.png", "R17_GrandCanyon.png", "R18_Greenbelt.png", "R19_HarringtonMemorialBridge.png", "R20_HendrixHall.png", "R21_HighRentDistrict.png", "R22_IceMines.png", "R23_IrradiatedZone.png", "R24_KnANOBase.png", "R25_MarauderPrisonCamp.png", "R26_MarauderTemple.png", "R27_MarinerValley.png", "R28_MercenaryBase.png", "R29_MineM-4.png", "R30_MinerOlympicsArena.png", "R31_MountVogel.png", "R32_OasisIndustrialPark.png", "R33_OreProcessingPlant.png", "R34_PublicInformationBuilding.png", "R35_RedFactionBase.png", "R36_RedRockTradingPost.png", "R37_SectorN-17.png", "R38_SopotCityDocks.png", "R39_SopotsCitadel.png", "R40_SopotStatue.png", "R41_Spaceport.png", "R42_SpaceStation.png", "R43_StorageDepotB-76.png", "R44_TheMohole.png", "R45_TheTerraformer.png", "R46_TrainStation.png", "R47_UltorCentralCommand.png", "R48_Vetro.png"];
@@ -208,6 +301,9 @@
       tile.href = href;
       tile.target = '_blank';
       tile.rel = 'noopener noreferrer';
+      tile.dataset.zoomSrc = href;
+      tile.dataset.zoomTitle = title;
+      tile.dataset.zoomAlt = `${title} (${label})`;
 
       const img = document.createElement('img');
       img.src = href;
@@ -237,6 +333,61 @@
     renderSection('A', mainDeck.filter((file) => file.startsWith('A')));
     renderSection('N', mainDeck.filter((file) => file.startsWith('N')));
     renderSection('R', roomDeck);
+
+    const zoomOverlay = document.querySelector('.zoom-overlay');
+    const zoomDialog = document.querySelector('.zoom-dialog');
+    const zoomImage = document.querySelector('.zoom-image');
+    const zoomTitle = document.querySelector('.zoom-title');
+    const zoomClose = document.querySelector('.zoom-close');
+    let lastFocusedTile = null;
+
+    function openZoom(tile) {
+      if (!tile) return;
+      lastFocusedTile = tile;
+      zoomImage.src = tile.dataset.zoomSrc;
+      zoomImage.alt = tile.dataset.zoomAlt;
+      zoomTitle.textContent = tile.dataset.zoomTitle;
+      zoomOverlay.classList.add('is-active');
+      zoomOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-zoomed');
+      zoomClose.focus();
+    }
+
+    function closeZoom() {
+      zoomOverlay.classList.remove('is-active');
+      zoomOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-zoomed');
+      zoomImage.src = '';
+      if (lastFocusedTile) {
+        lastFocusedTile.focus();
+      }
+    }
+
+    document.addEventListener('click', (event) => {
+      const tile = event.target.closest('.card-tile');
+      if (tile) {
+        event.preventDefault();
+        openZoom(tile);
+        return;
+      }
+
+      if (
+        event.target === zoomOverlay ||
+        event.target === zoomClose
+      ) {
+        closeZoom();
+      }
+    });
+
+    zoomDialog.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && zoomOverlay.classList.contains('is-active')) {
+        closeZoom();
+      }
+    });
   </script>
 </body>
 </html>
