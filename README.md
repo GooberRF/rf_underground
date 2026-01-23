@@ -1,5 +1,7 @@
 # Red Faction: Underground — Rulebook
 
+View card gallery: https://gooberrf.github.io/rf_underground/
+
 **Players:** 2–4  
 **Play Time:** ~30 minutes  
 **Game Type:** Competitive multiplayer card/board game inspired by *Boss Monster*, set in the *Red Faction* universe.
