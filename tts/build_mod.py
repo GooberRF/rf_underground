@@ -8,7 +8,7 @@ import math
 from pathlib import Path
 from typing import Iterable, List, Tuple
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
 CARD_SIZE = (750, 1050)
 
@@ -35,23 +35,11 @@ def build_sheet(cards: List[Path], columns: int, rows: int, output_path: Path) -
     sheet.save(output_path)
 
 
-def build_back_image(output_path: Path) -> None:
-    width, height = CARD_SIZE
-    back = Image.new("RGBA", CARD_SIZE, (18, 18, 24, 255))
-    draw = ImageDraw.Draw(back)
-    accent_color = (190, 30, 30, 255)
-    draw.rectangle([40, 40, width - 40, height - 40], outline=accent_color, width=8)
-
-    title = "RED FACTION\nUNDERGROUND"
-    font = ImageFont.load_default()
-    text_w, text_h = draw.multiline_textbbox((0, 0), title, font=font, align="center")[2:]
-    draw.multiline_text(
-        ((width - text_w) / 2, (height - text_h) / 2),
-        title,
-        font=font,
-        fill=(235, 235, 235, 255),
-        align="center",
-    )
+def build_back_image(source_path: Path, output_path: Path) -> None:
+    back = Image.open(source_path).convert("RGBA")
+    if back.size != CARD_SIZE:
+        back = back.resize(CARD_SIZE)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     back.save(output_path)
 
 
@@ -156,30 +144,35 @@ def build_mod(
         for index in range(len(main_chunks))
     ]
     room_sheet = output_dir / "room_deck_sheet.png"
-    back_image = output_dir / "card_back.png"
+    main_back_image = output_dir / "main_back.png"
+    room_back_image = output_dir / "room_back.png"
+    main_back_source = asset_dir / "Backs" / "B00_Main.png"
+    room_back_source = asset_dir / "Backs" / "B01_Room.png"
 
     for chunk, sheet_path in zip(main_chunks, main_sheets):
         build_sheet(chunk, main_cols, main_rows, sheet_path)
     build_sheet(room_cards, room_cols, room_rows, room_sheet)
-    build_back_image(back_image)
+    build_back_image(main_back_source, main_back_image)
+    build_back_image(room_back_source, room_back_image)
 
     def file_url(path: Path) -> str:
         return path.resolve().as_uri()
 
     main_faces = [file_url(path) for path in main_sheets]
     room_face = file_url(room_sheet)
-    back_url = file_url(back_image)
+    main_back_url = file_url(main_back_image)
+    room_back_url = file_url(room_back_image)
 
     main_decks = []
     for index, (chunk, face_url) in enumerate(zip(main_chunks, main_faces), start=1):
         deck, _ = build_deck_objects(
-            chunk, index, face_url, back_url, main_cols, main_rows
+            chunk, index, face_url, main_back_url, main_cols, main_rows
         )
         deck["Nickname"] = f"Main Deck {index}"
         deck["Transform"].update({"posX": -4.5 + (index - 1) * 3.0, "posZ": 0})
         main_decks.append(deck)
     room_deck, _ = build_deck_objects(
-        room_cards, 100, room_face, back_url, room_cols, room_rows
+        room_cards, 100, room_face, room_back_url, room_cols, room_rows
     )
     room_deck["Nickname"] = "Room Deck"
     room_deck["Transform"].update({"posX": 3.0, "posZ": 0})
