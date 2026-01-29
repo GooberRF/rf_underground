@@ -30,7 +30,7 @@ In **Red Faction: Underground**, you use room cards to construct a base, and def
 
 You win immediately when either condition is met:
 
-1. **Score 10 Points** (by defeating attacking characters), or  
+1. **Score 7 Points** (by defeating attacking characters), or  
 2. **Be the Last Surviving Player**  
    - A player is eliminated when they reach **3 Wounds**.
 
@@ -236,8 +236,8 @@ When a character attacks a base:
 
 1. The attacker enters at the **Entrance** and moves **room by room**.  
 2. In each room, compare the room’s stat/check (STR/DEX/INT) to the attacker’s matching stat:
-   - If **attacker stat exceeds or equals the room check** → pass safely.
-   - If **attacker stat is less than room check** → take **1 damage**.
+   - If **attacker stat exceeds or equals the room check** → pass safely and take **0 damage**.
+   - If **attacker stat is less than room check** → take **damage equal to the difference** (room check minus attacker stat).
 3. If total damage **exceeds or equals CON**, the attacker **dies immediately**:
    - The defending player takes that character card as **1 Point** (keep it face down).
 4. If the attacker survives and passes through **all rooms in the base**:
