@@ -178,7 +178,7 @@
       <h2>1. How You Win</h2>
       <div class="callout">You win immediately when either win condition is met.</div>
       <ol>
-        <li><strong>Score 10 Points</strong> by defeating attacking characters.</li>
+        <li><strong>Score 7 Points</strong> by defeating attacking characters.</li>
         <li><strong>Be the Last Surviving Player</strong>
           <ul>
             <li>A player is eliminated when they reach <strong>3 Wounds</strong>.</li>
@@ -208,9 +208,9 @@
 
       <h3>Areas</h3>
       <ul>
-        <li><strong>Each player’s Base</strong> (starts empty; max <strong>5</strong> rooms)</li>
+        <li><strong>Each playerâ€™s Base</strong> (starts empty; max <strong>5</strong> rooms)</li>
         <li><strong>Barracks</strong> (central area where characters wait before attacking)</li>
-        <li><strong>Each player’s Hand</strong> (secret information)</li>
+        <li><strong>Each playerâ€™s Hand</strong> (secret information)</li>
       </ul>
     </section>
 
@@ -218,7 +218,7 @@
       <h2>3. Card Types</h2>
 
       <h3>Rooms</h3>
-      <p>Rooms appear in the <strong>Room Deck</strong> and in players’ <strong>Bases</strong>.</p>
+      <p>Rooms appear in the <strong>Room Deck</strong> and in playersâ€™ <strong>Bases</strong>.</p>
       <p>Each Room has:</p>
       <ul>
         <li><strong>Name</strong></li>
@@ -230,7 +230,7 @@
       <p><strong>Entrance:</strong> The first room of your base (the one attackers enter first).</p>
 
       <h3>Characters</h3>
-      <p>Characters appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, the <strong>Barracks</strong>, and as <strong>Attackers</strong>.</p>
+      <p>Characters appear in the <strong>Main Deck</strong>, playersâ€™ <strong>Hands</strong>, the <strong>Barracks</strong>, and as <strong>Attackers</strong>.</p>
       <p>Each Character has:</p>
       <ul>
         <li><strong>Name</strong></li>
@@ -241,7 +241,7 @@
       <p>Characters can only be played during the <strong>Play</strong> phase.</p>
 
       <h3>Events</h3>
-      <p>Events appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, and the <strong>Stack</strong> (while resolving).</p>
+      <p>Events appear in the <strong>Main Deck</strong>, playersâ€™ <strong>Hands</strong>, and the <strong>Stack</strong> (while resolving).</p>
       <p>Each Event has:</p>
       <ul>
         <li><strong>Name</strong></li>
@@ -251,7 +251,7 @@
       <p>Events can only be played during the <strong>Play</strong> phase.</p>
 
       <h3>Interrupts</h3>
-      <p>Interrupts appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, and the <strong>Stack</strong> (while resolving).</p>
+      <p>Interrupts appear in the <strong>Main Deck</strong>, playersâ€™ <strong>Hands</strong>, and the <strong>Stack</strong> (while resolving).</p>
       <p>Each Interrupt has:</p>
       <ul>
         <li><strong>Name</strong></li>
@@ -262,7 +262,7 @@
       <p>Interrupts can be played at the specific time printed on the card.</p>
 
       <h3>Nano Enhancements</h3>
-      <p>Nano Enhancements appear in the <strong>Main Deck</strong>, players’ <strong>Hands</strong>, and <strong>attached</strong> to characters.</p>
+      <p>Nano Enhancements appear in the <strong>Main Deck</strong>, playersâ€™ <strong>Hands</strong>, and <strong>attached</strong> to characters.</p>
       <p>Each Nano Enhancement has:</p>
       <ul>
         <li><strong>Name</strong></li>
@@ -366,8 +366,8 @@
       <h4>Resolving an Attack</h4>
       <ol>
         <li>The attacker enters at the <strong>Entrance</strong> and moves <strong>room by room</strong>.</li>
-        <li>In each room, compare the room’s stat/check (STR/DEX/INT) to the attacker’s matching stat:
-          <ul>
+            <li>If <strong>attacker stat exceeds or equals the room check</strong> ? pass safely and take <strong>0 damage</strong>.</li>
+            <li>If <strong>attacker stat is less than room check</strong> ? take <strong>damage equal to the difference</strong> (room check minus attacker stat).</li>
             <li>If <strong>attacker stat exceeds or equals the room check</strong> ? pass safely.</li>
             <li>If <strong>attacker stat is less than room check</strong> ? take <strong>1 damage</strong>.</li>
           </ul>
